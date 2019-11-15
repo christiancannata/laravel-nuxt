@@ -14,3 +14,5 @@ yarn-error.log
 /dist
 /public/_nuxt
 *.code-workspace
+*.DS_Store
+.idea
