@@ -18,17 +18,37 @@ class UserType extends GraphQLType
     {
         return [
             'id' => [
-                'type' => Type::nonNull(Type::string()),
+                'type' => Type::nonNull(Type::int()),
                 'description' => 'The id of the user',
                 // Use 'alias', if the database column is different from the type name.
                 // This is supported for discrete values as well as relations.
                 // - you can also use `DB::raw()` to solve more complex issues
                 // - or a callback returning the value (string or `DB::raw()` result)
-                'alias' => 'user_id',
+                //'alias' => 'user_id',
             ],
             'email' => [
                 'type' => Type::string(),
                 'description' => 'The email of user',
+            ],
+            'first_name' => [
+                'type' => Type::string(),
+                'description' => 'The first name of user',
+            ],
+            'last_name' => [
+                'type' => Type::string(),
+                'description' => 'The last name of user',
+            ],
+            'city' => [
+                'type' => Type::string(),
+                'description' => 'The city of user',
+            ],
+            'country' => [
+                'type' => Type::string(),
+                'description' => 'The country of user',
+            ],
+            'role' => [
+                'type' => Type::string(),
+                'description' => 'The role of user',
             ],
             // Uses the 'getIsMeAttribute' function on our custom User model
             'isMe' => [
@@ -41,8 +61,9 @@ class UserType extends GraphQLType
 
     // If you want to resolve the field yourself, you can declare a method
     // with the following format resolve[FIELD_NAME]Field()
-    protected function resolveEmailField($root, $args)
-    {
-        return strtolower($root->email);
-    }
+    //protected function resolveEmailField($root, $args)
+    //{
+    //    return strtolower($root->email);
+    //}
+
 }

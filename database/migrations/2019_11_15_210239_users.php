@@ -16,19 +16,19 @@ class Users extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->renameColumn('name', 'first_name');
             $table->string('last_name');
-            $table->string('city');
-            $table->string('country');
+            $table->string('city')->nullable();
+            $table->string('country')->nullable();
             $table->enum('role', ['USER', 'COMPANY', 'ADMIN'])->default('USER');
-            $table->string('website');
-            $table->string('linkedin_account');
-            $table->string('twitter_account');
-            $table->string('avatar');
-            $table->text('short_bio');
-            $table->float('daily_rate_from');
-            $table->string('daily_rate_to');
-            $table->boolean('is_available');
-            $table->boolean('remote_work');
-            $table->dateTime('deleted_at');
+            $table->string('website')->nullable();
+            $table->string('linkedin_account')->nullable();
+            $table->string('twitter_account')->nullable();
+            $table->string('avatar')->nullable();
+            $table->text('short_bio')->nullable();
+            $table->float('daily_rate_from')->nullable();
+            $table->string('daily_rate_to')->nullable();
+            $table->boolean('is_available')->default(true);
+            $table->boolean('remote_work')->default(false);
+            $table->dateTime('deleted_at')->nullable();
         });
     }
 
