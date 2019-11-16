@@ -101,10 +101,12 @@ return [
     'schemas' => [
         'default' => [
             'query' => [
-                'users' => App\GraphQL\Queries\UsersQuery::class
+                'users' => App\GraphQL\Queries\UsersQuery::class,
+                'companies' => App\GraphQL\Queries\CompaniesQuery::class,
+                'briefs' => App\GraphQL\Queries\BriefsQuery::class
             ],
             'mutation' => [
-                'updateUserPassword' => App\GraphQL\Mutations\UpdateUserPasswordMutation::class
+              //  'updateUserPassword' => App\GraphQL\Mutations\UpdateUserPasswordMutation::class
             ],
             'middleware' => [],
             'method' => ['get', 'post'],
@@ -124,7 +126,11 @@ return [
         // 'example'           => ExampleType::class,
         // 'relation_example'  => ExampleRelationType::class,
         // \Rebing\GraphQL\Support\UploadType::class,
-        'user' => App\GraphQL\Types\UserType::class
+        'user' => App\GraphQL\Types\UserType::class,
+        'company' => App\GraphQL\Types\CompanyType::class,
+        'skill' => App\GraphQL\Types\SkillType::class,
+        'brief' => App\GraphQL\Types\BriefType::class,
+
     ],
 
     // The types will be loaded on demand. Default is to load all types on each request

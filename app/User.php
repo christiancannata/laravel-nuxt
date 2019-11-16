@@ -9,11 +9,12 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable implements JWTSubject, MustVerifyEmail
 {
     use Notifiable;
-
+    use SoftDeletes;
     /**
      * The attributes that are mass assignable.
      *
@@ -55,7 +56,7 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
      */
     public function getPhotoUrlAttribute()
     {
-        return 'https://www.gravatar.com/avatar/'.md5(strtolower($this->email)).'.jpg?s=200&d=mm';
+        return 'https://www.gravatar.com/avatar/' . md5(strtolower($this->email)) . '.jpg?s=200&d=mm';
     }
 
     /**
@@ -71,7 +72,7 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
     /**
      * Send the password reset notification.
      *
-     * @param  string  $token
+     * @param string $token
      * @return void
      */
     public function sendPasswordResetNotification($token)
@@ -104,4 +105,27 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
     {
         return [];
     }
+
+    public function companies()
+    {
+        return $this->belongsToMany('App\Company', 'users_companies');
+    }
+
+    public function skills()
+    {
+        return $this->belongsToMany('App\Skill', 'users_skills');
+    }
+
+    public function briefs()
+    {
+        return $this->hasMany('App\Brief');
+    }
+
+    public function applications()
+    {
+        return $this->hasMany('App\Application');
+
+    }
+
+
 }
